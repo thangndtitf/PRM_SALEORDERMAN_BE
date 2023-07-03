@@ -33,6 +33,8 @@ namespace PRM_SALEORDERMAN.Controllers
             SaleOrderBLL saleOrderBLL = new SaleOrderBLL();
             return saleOrderBLL.insertNewSaleOrder(requestBD.saleOrderML, requestBD.listSODetail); 
         }
+
+
     }
 }
 

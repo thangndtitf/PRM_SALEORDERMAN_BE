@@ -32,6 +32,31 @@ namespace PRM_SALEORDERMAN.BLL
         }
 
 
+        public Boolean deleteProductBySO(int saleOrderDetailID)
+        {
+            Boolean result = false;
+            if(saleOrderDetailID < 0)
+            {
+                result = false;
+
+            }
+            else
+            {
+                SaleOrderDetailDAL saleOrderDetailDAL = new SaleOrderDetailDAL(configuration);
+                result = saleOrderDetailDAL.deleteProductBySO(saleOrderDetailID);
+            }
+
+            return result;
+        }
+
+        public SaleOrderDetailML insertProductToSO(SaleOrderDetailML saleOrderDetailML)
+        {
+            SaleOrderDetailDAL saleOrderDetailDAL = new SaleOrderDetailDAL(configuration);
+            return saleOrderDetailDAL.insertNewSaleOrderDetail(saleOrderDetailML);
+
+        }
+
+
     }
 }
 

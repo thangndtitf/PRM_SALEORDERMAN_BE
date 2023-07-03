@@ -1,6 +1,7 @@
 ﻿
 using Dapper;
 using Microsoft.Data.SqlClient;
+using PRM_SALEORDERMAN.BLL;
 using PRM_SALEORDERMAN.ML;
 
 namespace PRM_SALEORDERMAN.DAL
@@ -42,7 +43,31 @@ namespace PRM_SALEORDERMAN.DAL
         }
 
 
+        public Boolean deleteProductBySO(int saleOrderDetailID)
+        {
+            Boolean result = false;
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            try
+            {
+                String queryStr = "exec SALEORDERDETAIL_DELETE @SALEORDERDETAILID";
+                var parameters = new DynamicParameters();
+                parameters.Add("@SALEORDERDETAILID", saleOrderDetailID);
+                connection.QueryFirstOrDefault<SaleOrderDetailML>(queryStr, parameters);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+        }
 
     }
+
 }
 
