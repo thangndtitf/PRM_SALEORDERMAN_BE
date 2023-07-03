@@ -13,8 +13,8 @@ namespace PRM_SALEORDERMAN.Controllers
     [Route("api/Customer")]
     public class CustomerController : Controller
     {
-        [HttpPost]
-        [Route("/getInforCustomer")]
+        [HttpGet]
+        [Route("/getInforCustomer/{customerID}")]
         public CustomerML getInfoCusByID(int customerID)
         {
             CustomerBLL cusBLL = new CustomerBLL();
@@ -23,10 +23,10 @@ namespace PRM_SALEORDERMAN.Controllers
 
         [HttpPost]
         [Route("/Login")]
-        public CustomerML loginUP(String userName, String password)
+        public CustomerML loginUP([FromBody] CustomerLoginRequest customerRequest)
         {
             CustomerBLL cusBLL = new CustomerBLL();
-            return cusBLL.loginUP(userName, password);
+            return cusBLL.loginUP(customerRequest.userName, customerRequest.password);
         }
     }
 }
