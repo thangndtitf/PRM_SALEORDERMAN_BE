@@ -1,4 +1,5 @@
 ﻿
+using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using PRM_SALEORDERMAN.BLL;
@@ -29,7 +30,7 @@ namespace PRM_SALEORDERMAN.DAL
                     @TOTALPRICE = saleOrderDetailML.totalPrice,
                     @PRODUCTPRICE = saleOrderDetailML.productPrice,
                     @DISCOUNTPRICE = saleOrderDetailML.discountPrice };
-                insertObj = (SaleOrderDetailML)connection.QueryFirstOrDefault<SaleOrderDetailML>(querStr, value);
+                insertObj = connection.QueryFirstOrDefault<SaleOrderDetailML>(querStr, value);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using PRM_SALEORDERMAN.ML;
@@ -49,7 +50,7 @@ namespace PRM_SALEORDERMAN.DAL
                 var parameter = new DynamicParameters();
                 parameter.Add("@USERNAME" , userName);
                 parameter.Add("@PASSWORD", password);
-                customer = connection.QueryFirstOrDefault<CustomerML>(queryStr, parameter);
+                customer = connection.QueryFirstOrDefault<CustomerML>(queryStr, parameter );
             }
             catch (Exception ex)
             {
