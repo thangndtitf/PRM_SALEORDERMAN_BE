@@ -43,6 +43,28 @@ namespace PRM_SALEORDERMAN.DAL
             return insertObj;
         }
 
+        public SaleOrderDetailML findSODetailByID(int saleOrderDetailID)
+        {
+            SaleOrderDetailML SODetail = new SaleOrderDetailML();
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            try
+            {
+                connection.Open();
+                String storeProcedure = "SALEORDERDETAIL_GETBYID";
+                var parameter = new DynamicParameters();
+                parameter.Add("@SALEORDERDETAILID", saleOrderDetailID);
+                SODetail = connection.QueryFirstOrDefault<SaleOrderDetailML>(storeProcedure, parameter, commandType: CommandType.StoredProcedure);
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return SODetail;
+        }
+
 
         public Boolean deleteProductBySO(int saleOrderDetailID)
         {
@@ -50,11 +72,20 @@ namespace PRM_SALEORDERMAN.DAL
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             try
             {
-                String queryStr = "exec SALEORDERDETAIL_DELETE @SALEORDERDETAILID";
-                var parameters = new DynamicParameters();
-                parameters.Add("@SALEORDERDETAILID", saleOrderDetailID);
-                connection.QueryFirstOrDefault<SaleOrderDetailML>(queryStr, parameters);
-                result = true;
+                SaleOrderDetailML SODetail = this.findSODetailByID(saleOrderDetailID);
+                if(SODetail == null)
+                {
+                    result = false;
+                }
+                else
+                {
+                    String queryStr = "exec SALEORDERDETAIL_DELETE @SALEORDERDETAILID";
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@SALEORDERDETAILID", saleOrderDetailID);
+                    connection.QueryFirstOrDefault<SaleOrderDetailML>(queryStr, parameters);
+                    result = true;
+                }
+                
             }
             catch (Exception ex)
             {
