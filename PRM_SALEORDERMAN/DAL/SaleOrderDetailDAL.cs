@@ -2,7 +2,6 @@
 using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using PRM_SALEORDERMAN.BLL;
 using PRM_SALEORDERMAN.ML;
 
 namespace PRM_SALEORDERMAN.DAL

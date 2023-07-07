@@ -8,7 +8,7 @@ using PRM_SALEORDERMAN.ML;
 namespace PRM_SALEORDERMAN.Controllers
 {
     [Route("api/Customer")]
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
         [HttpGet]
         [Route("/getInforCustomer/{customerID}")]
