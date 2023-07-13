@@ -1,7 +1,4 @@
-﻿using System;
-using PRM_SALEORDERMAN.ML;
-
-namespace PRM_SALEORDERMAN.ML
+﻿namespace PRM_SALEORDERMAN.ML
 {
 	public class InventoryML
     {

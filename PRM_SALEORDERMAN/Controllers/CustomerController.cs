@@ -7,11 +7,11 @@ using PRM_SALEORDERMAN.ML;
 
 namespace PRM_SALEORDERMAN.Controllers
 {
-    [Route("api/Customer")]
+    [Route("/api/Customer")]
     public class CustomerController : ControllerBase
     {
         [HttpGet]
-        [Route("/getInforCustomer/{customerID}")]
+        [Route("/getInforCustomer/")]
         public CustomerML getInfoCusByID(int customerID)
         {
             CustomerBLL cusBLL = new CustomerBLL();

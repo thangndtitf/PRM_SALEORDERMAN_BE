@@ -16,8 +16,6 @@ namespace PRM_SALEORDERMAN.BLL
             InventoryDAL intDAL = new InventoryDAL(configuration);
             
                 result = intDAL.getAllInvt(); result = intDAL.getAllInvt();result = intDAL.getAllInvt(); result = intDAL.getAllInvt();
-            
-
             return result;
         }
 
