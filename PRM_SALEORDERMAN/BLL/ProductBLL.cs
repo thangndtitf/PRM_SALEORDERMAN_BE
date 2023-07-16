@@ -19,9 +19,31 @@ namespace PRM_SALEORDERMAN.BLL
             }
 
             return listResult;
+        }
 
+        public ProductML getProductByID(int productID) {
+            ProductML resultObj = new ProductML();
+            ProductDAL productDAL = new ProductDAL(configuration);
+            if (productID <= 0) {
+                resultObj = null;
+            }
+            else {
+                resultObj = productDAL.getProductByID(productID);
+            }
 
+            return resultObj;
+        }
+
+        public List<ProductML> getProductByType(int productTypeID)
+        {
             
+            ProductDAL productDAL = new ProductDAL(configuration);
+            List<ProductML> listResult = productDAL.getProductByType(productTypeID);
+            if (listResult.Count <= 0)
+            {
+                listResult = null;
+            }
+            return listResult;
         }
     }
 }

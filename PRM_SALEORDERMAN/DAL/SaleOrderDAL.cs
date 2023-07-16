@@ -64,18 +64,24 @@ namespace PRM_SALEORDERMAN.DAL
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             try
             {
-
                 connection.Open();
-                var parameters = new DynamicParameters();
-                parameters.Add("@CUSTOMERID", saleOrderML.custId);
-                parameters.Add("@CURRENTSTATUS", saleOrderML.currentStatus);
-                parameters.Add("@CREATEDSTAFFNAME", saleOrderML.createdStaffName);
-                parameters.Add("@SALESTOREID", saleOrderML.saleStoreID);
-                parameters.Add("@SALEORDERID", dbType: DbType.Int32, direction: ParameterDirection.Output);
-                var query = "dbo.CREATESALEORDER";
-                var result = connection.QueryFirstOrDefault<int>(query, parameters, commandType: CommandType.StoredProcedure);
-                var saleOrderId = parameters.Get<int>("@SALEORDERID");
-                insertID = saleOrderId;
+                if (saleOrderByCusID(saleOrderML.custId) <= 0 ) {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@CUSTOMERID", saleOrderML.custId);
+                    parameters.Add("@CURRENTSTATUS", saleOrderML.currentStatus);
+                    parameters.Add("@CREATEDSTAFFNAME", saleOrderML.createdStaffName);
+                    parameters.Add("@SALESTOREID", saleOrderML.saleStoreID);
+                    parameters.Add("@SALEORDERID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                    var query = "dbo.CREATESALEORDER";
+                    var result = connection.QueryFirstOrDefault<int>(query, parameters, commandType: CommandType.StoredProcedure);
+                    var saleOrderId = parameters.Get<int>("@SALEORDERID");
+                    insertID = saleOrderId;
+                }
+                else if(saleOrderByCusID(saleOrderML.custId) > 0)
+                {
+                    insertID = saleOrderByCusID(saleOrderML.custId);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -86,6 +92,28 @@ namespace PRM_SALEORDERMAN.DAL
                 connection.Close();
             }
             return insertID;
+        }
+
+        public int saleOrderByCusID(int cusID) {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            int saleOrderID = 0;
+            try
+            {
+                connection.Open();
+                String storeProcedure = "dbo.GETSALEORDERBYCUSID";
+                var parameter = new DynamicParameters();
+                parameter.Add("@CUSTOMERID", cusID);
+                saleOrderID = connection.QueryFirstOrDefault<SaleOrderML>(storeProcedure, parameter, commandType: CommandType.StoredProcedure).saleOrderID;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return saleOrderID;
         }
 
 

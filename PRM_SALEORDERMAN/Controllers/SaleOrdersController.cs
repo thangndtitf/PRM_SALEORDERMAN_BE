@@ -34,6 +34,13 @@ namespace PRM_SALEORDERMAN.Controllers
             return saleOrderBLL.insertNewSaleOrder(requestBD.saleOrderML, requestBD.listSODetail); 
         }
 
+        [HttpGet]
+        [Route("/getSOByCus")]
+        public int getSOByCusID(int cusID) {
+            SaleOrderBLL saleOrderBLL = new SaleOrderBLL();
+            return saleOrderBLL.getSOByCus(cusID);
+        }
+
 
     }
 }

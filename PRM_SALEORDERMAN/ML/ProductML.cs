@@ -30,14 +30,12 @@ namespace PRM_SALEORDERMAN.ML
             this.description = description;
             this.price = price;
         }
+
+        public ProductML()
+        {
+        }
     }
 }
 
 
-//PRODUCTID int IDENTITY(1,1) NOT NULL,
-//PRODUCTTYPEID int NOT NULL,
-//CURRENTINSTOCK int NOT NULL,
-//PRODUCTNAME nvarchar(300) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-//DESCRIPTION nvarchar(300) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-//PRICE money NULL,
 

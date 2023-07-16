@@ -98,6 +98,30 @@ namespace PRM_SALEORDERMAN.DAL
             return result;
         }
 
+        public List<SaleOrderDetailML> getListSODetail(int saleOrderID) {
+            List<SaleOrderDetailML> listSoDetail = new List<SaleOrderDetailML>();
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            try
+            {
+                connection.Open();
+                String storeProcedure = "SALEORDERDETAIL_GETBYSOID";
+                var parameter = new DynamicParameters();
+                parameter.Add("@SALEORDERID", saleOrderID);
+                listSoDetail = (List<SaleOrderDetailML>)connection.Query<SaleOrderDetailML>(storeProcedure, parameter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+
+
+            return listSoDetail;
+        }
+
+
     }
 
 }

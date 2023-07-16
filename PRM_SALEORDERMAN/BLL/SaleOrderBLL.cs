@@ -45,12 +45,18 @@ namespace PRM_SALEORDERMAN.BLL
             saleOrderID = saleOrderDAL.insertNewSaleOrder(saleOrder);
 			saleOrderDetailBLL.insertNewSaleOrderDetails(listSODetail, saleOrderID);
 			
-			if(saleOrderID <= 0)
-			{
-				throw new Exception("Error at SaleOrderBLL");
-			}
+			//if(saleOrderID <= 0)
+			//{
+			//	throw new Exception("Error at SaleOrderBLL");
+			//}
             return saleOrderID;
 		}
+		public int getSOByCus(int cusID) {
+            SaleOrderDAL saleOrderDAL = new SaleOrderDAL(configuration);
+			return saleOrderDAL.saleOrderByCusID(cusID);
+        }
+
+		
 
 
     }

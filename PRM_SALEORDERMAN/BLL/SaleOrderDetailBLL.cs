@@ -56,6 +56,13 @@ namespace PRM_SALEORDERMAN.BLL
 
         }
 
+        public List<SaleOrderDetailML> getListSoDetail(int cusID) {
+            SaleOrderBLL saleOrderBLL = new SaleOrderBLL();
+            int saleOrderID = saleOrderBLL.getSOByCus(cusID);
+            SaleOrderDetailDAL saleOrderDetailDAL = new SaleOrderDetailDAL(configuration);
+            return saleOrderDetailDAL.getListSODetail(saleOrderID);
+        }
+
 
     }
 }

@@ -26,6 +26,13 @@ namespace PRM_SALEORDERMAN.Controllers
             return saleOrderDetailBLL.insertProductToSO(saleOrderDetailML);
         }
 
+        [HttpGet]
+        [Route("/getListSoDetailBySoID")]
+        public List<SaleOrderDetailML> getListSODetailBySoID(int cusId) {
+            SaleOrderDetailBLL saleOrderDetailBLL = new SaleOrderDetailBLL();
+            return saleOrderDetailBLL.getListSoDetail(cusId);
+        }
+
 
         
     }

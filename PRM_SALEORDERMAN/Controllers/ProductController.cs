@@ -20,6 +20,21 @@ namespace PRM_SALEORDERMAN.Controllers
             ProductBLL productBLL = new ProductBLL();
             return productBLL.getAllProductML();
         }
+
+        [HttpGet]
+        [Route("/getProductByID/")]
+        public ProductML getProductByID(int productID) {
+            ProductBLL productBLL = new ProductBLL();
+            return productBLL.getProductByID(productID);
+        }
+
+        [HttpGet]
+        [Route("/getProductByType/")]
+        public List<ProductML> getProductByType(int productType)
+        {
+            ProductBLL productBLL = new ProductBLL();
+            return productBLL.getProductByType(productType);
+        }
     }
 }
 
