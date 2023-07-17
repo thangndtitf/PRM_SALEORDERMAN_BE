@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using PRM_SALEORDERMAN.BLL;
 using PRM_SALEORDERMAN.ML;

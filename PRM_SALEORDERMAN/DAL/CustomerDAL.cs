@@ -65,6 +65,39 @@ namespace PRM_SALEORDERMAN.DAL
             }
             return customer;
         }
+
+
+        public CustomerML addNewAddress(int cusID,String cusAddress, String cussPhone, String cusPostalCode) {
+            CustomerML resultObj = new CustomerML();
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+
+            try
+            {
+                connection.Open();
+
+                String storeProcedure = "CUSTOMER_ADDADDRESS";
+                var parameter = new DynamicParameters();
+                parameter.Add("@CUSFULLADDRESS", cusAddress);
+                parameter.Add("@CUSPHONE", cussPhone);
+                parameter.Add("@POSTALCODE", cusPostalCode);
+                parameter.Add("@CUSTOMERID", cusID);
+                resultObj = (CustomerML)connection.QueryFirstOrDefault<CustomerML>(storeProcedure, parameter, commandType: CommandType.StoredProcedure);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+
+
+
+            return resultObj;
+        }
         
 
     }

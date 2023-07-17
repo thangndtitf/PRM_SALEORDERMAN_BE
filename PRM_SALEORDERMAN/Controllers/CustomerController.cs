@@ -25,6 +25,13 @@ namespace PRM_SALEORDERMAN.Controllers
             CustomerBLL cusBLL = new CustomerBLL();
             return cusBLL.loginUP(customerRequest.userName, customerRequest.password);
         }
+
+        [HttpGet]
+        [Route("/AddNewAddress")]
+        public CustomerML addnewAddress(int cusID, String cusAddress, String cussPhone, String cusPostalCode) {
+            CustomerBLL cusBLL = new CustomerBLL();
+            return cusBLL.addNewADDress(cusID, cusAddress, cussPhone, cusPostalCode);
+        }
     }
 }
 

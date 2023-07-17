@@ -37,7 +37,7 @@ namespace PRM_SALEORDERMAN.BLL
 
         public CustomerML loginUP(String userName, string password)
         {
-            _ = new CustomerML();
+            CustomerML customer = new CustomerML();
             if (userName == null || password == null)
             {
                 throw new Exception("USername or password is null");
@@ -45,7 +45,7 @@ namespace PRM_SALEORDERMAN.BLL
             else
             {
                 CustomerDAL customerDAL = new CustomerDAL(configuration);
-                CustomerML customer;
+               
                 if( customerDAL.loginUP(userName, password) == null)
                 {
                     return null;
@@ -57,6 +57,15 @@ namespace PRM_SALEORDERMAN.BLL
                 return customer;
             }
             
+        }
+
+        public CustomerML addNewADDress(int cusID, String cusAddress, String cussPhone, String cusPostalCode) {
+            CustomerML resultObj = new CustomerML();
+            CustomerDAL customerDAL = new CustomerDAL(configuration);
+            resultObj = customerDAL.addNewAddress(cusID, cusAddress, cussPhone, cusPostalCode);
+
+
+            return resultObj;
         }
 
 

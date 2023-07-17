@@ -18,13 +18,14 @@ namespace PRM_SALEORDERMAN.ML
         public String cusFullAddress { get; set; }
         public String cusPhone { get; set; }
         public String cusEmail { get; set; }
+        public String postalCode { get; set; }
 
         public CustomerML(int customerID, string userName,
             string password, string customerFullName,
             string country, string cusProvince,
             string cusDestrict, string cusWard,
             string cusAddress, string cusFullAddress,
-            string cusPhone, string cusEmail)
+            string cusPhone, string cusEmail, string postalCode)
         {
             this.customerID = customerID;
             this.userName = userName;
@@ -38,6 +39,7 @@ namespace PRM_SALEORDERMAN.ML
             this.cusFullAddress = cusFullAddress;
             this.cusPhone = cusPhone;
             this.cusEmail = cusEmail;
+            this.postalCode = postalCode;
         }
 
         public CustomerML(string userName, string password,
@@ -45,7 +47,7 @@ namespace PRM_SALEORDERMAN.ML
             string cusProvince, string cusDestrict,
             string cusWard, string cusAddress,
             string cusFullAddress, string cusPhone,
-            string cusEmail)
+            string cusEmail, string postalCode)
         {
             this.userName = userName;
             this.password = password;
@@ -58,6 +60,7 @@ namespace PRM_SALEORDERMAN.ML
             this.cusFullAddress = cusFullAddress;
             this.cusPhone = cusPhone;
             this.cusEmail = cusEmail;
+            this.postalCode = postalCode;
         }
 
         public CustomerML()
